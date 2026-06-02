@@ -123,6 +123,7 @@
           pkgs.stylua
           pkgs.tree-sitter
           pkgs.nodejs
+          pkgs.gcc
         ];
 
         shellHook = ''
@@ -149,6 +150,17 @@
           export XDG_CACHE_HOME="$(pwd)/.dev/cache"
 
           mkdir -p "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_STATE_HOME" "$XDG_CACHE_HOME"
+
+          # Compile the custom openspec_spec tree-sitter parser
+          PARSER_DIR="$(pwd)/parser"
+          PARSER_SO="$PARSER_DIR/openspec_spec.so"
+          PARSER_SRC="$(pwd)/tree-sitter-openspec-spec/src/parser.c"
+          if [ ! -f "$PARSER_SO" ] || [ "$PARSER_SRC" -nt "$PARSER_SO" ]; then
+            mkdir -p "$PARSER_DIR"
+            echo " Compiling openspec_spec parser..."
+            gcc -o "$PARSER_SO" -shared -fPIC -I "$(pwd)/tree-sitter-openspec-spec/src" "$PARSER_SRC" -Os
+            echo " Parser compiled: $PARSER_SO"
+          fi
         '';
       };
 

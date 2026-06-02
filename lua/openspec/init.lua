@@ -23,9 +23,12 @@ function M.setup(opts)
     vim.api.nvim_set_hl(0, group, { link = link, default = true })
   end
 
-  -- Register openspec_spec parser with nvim-treesitter
+  -- Register openspec_spec parser language for the openspec-spec filetype
+  vim.treesitter.language.register("openspec_spec", "openspec-spec")
+
+  -- Register with nvim-treesitter for :TSInstall support (if available)
   local ok, parsers = pcall(require, "nvim-treesitter.parsers")
-  if ok then
+  if ok and parsers.get_parser_configs then
     local parser_config = parsers.get_parser_configs()
     parser_config.openspec_spec = {
       install_info = {

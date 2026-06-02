@@ -7,4 +7,4 @@
   - devShell: nvim + lua-language-server + stylua + tree-sitter + nodejs, XDG isolation, OPENSPEC_DEV_PATH, shell banner
   - App output: `nix run` launches the configured nvim
 - [x] Add `.dev/` to `.gitignore`
-- [ ] Verify: `nix develop` enters shell, `nvim` launches with plugin loaded, `<Space>rr` reloads, highlighting works on openspec spec files, neo-tree shows openspec directory styling
+- [x] Verify: `nix develop` enters shell, `nvim` launches with plugin loaded, `<Space>rr` reloads, highlighting works on openspec spec files, neo-tree shows openspec directory styling
