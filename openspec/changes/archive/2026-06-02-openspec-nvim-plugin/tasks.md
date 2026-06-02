@@ -37,7 +37,7 @@
 
 ## 8. Verification
 
-- [ ] 8.1 Install plugin locally, open a spec.md under an openspec directory, and verify filetype is `openspec-spec` with treesitter highlighting active
-- [ ] 8.2 Verify neo-tree archive folder shows 󰀼 icon with warm yellow and gray italic text
-- [ ] 8.3 Verify non-openspec markdown files are unaffected
+- [x] 8.1 Install plugin locally, open a spec.md under an openspec directory, and verify filetype is `openspec-spec` with treesitter highlighting active
+- [x] 8.2 Verify neo-tree archive folder shows 󰀼 icon with warm yellow and gray italic text
+- [x] 8.3 Verify non-openspec markdown files are unaffected
 <!-- Note: tasks 8.1-8.3 require manual verification in neovim -->

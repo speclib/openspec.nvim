@@ -24,21 +24,10 @@ function M.setup(opts)
   end
 
   -- Register openspec_spec parser language for the openspec-spec filetype
-  vim.treesitter.language.register("openspec_spec", "openspec-spec")
-
-  -- Register with nvim-treesitter for :TSInstall support (if available)
-  local ok, parsers = pcall(require, "nvim-treesitter.parsers")
-  if ok and parsers.get_parser_configs then
-    local parser_config = parsers.get_parser_configs()
-    parser_config.openspec_spec = {
-      install_info = {
-        url = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":h:h:h") .. "/tree-sitter-openspec-spec",
-        files = { "src/parser.c" },
-        generate_requires_npm = false,
-        requires_generate_from_grammar = false,
-      },
-      filetype = "openspec-spec",
-    }
+  -- The compiled parser .so comes from tree-sitter-openspec (separate package)
+  local ok, _ = pcall(vim.treesitter.language.register, "openspec_spec", "openspec-spec")
+  if not ok then
+    vim.notify("openspec.nvim: openspec_spec parser not found. Install tree-sitter-openspec.", vim.log.levels.WARN)
   end
 
   -- Neo-tree integration

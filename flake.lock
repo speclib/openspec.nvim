@@ -62,7 +62,8 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim"
+        "nixvim": "nixvim",
+        "tree-sitter-openspec": "tree-sitter-openspec"
       }
     },
     "systems": {
@@ -78,6 +79,26 @@
         "owner": "nix-systems",
         "ref": "future-26.11",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tree-sitter-openspec": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780431412,
+        "narHash": "sha256-U0wkiGKT3HfdOUYRLl0JSBtFPtKFHI99Sm2gh7hNXH8=",
+        "owner": "speclib",
+        "repo": "tree-sitter-openspec",
+        "rev": "1d190a86fc4dd1ae93d14b82a0a6d3823bbbc909",
+        "type": "github"
+      },
+      "original": {
+        "owner": "speclib",
+        "repo": "tree-sitter-openspec",
         "type": "github"
       }
     }

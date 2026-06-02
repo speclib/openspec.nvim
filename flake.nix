@@ -7,14 +7,19 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tree-sitter-openspec = {
+      url = "github:speclib/tree-sitter-openspec";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixvim, ... }:
+  outputs = { self, nixpkgs, nixvim, tree-sitter-openspec, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
       openspecPluginPath = self;
+      openspecGrammar = tree-sitter-openspec.packages.${system}.default;
 
       nixvimModule = {
         extraPlugins = [
@@ -23,6 +28,7 @@
           pkgs.vimPlugins.neo-tree-nvim
           pkgs.vimPlugins.nvim-web-devicons
           pkgs.vimPlugins.nui-nvim
+          openspecGrammar
         ];
 
         extraConfigLua = ''
@@ -121,9 +127,6 @@
           nvim
           pkgs.lua-language-server
           pkgs.stylua
-          pkgs.tree-sitter
-          pkgs.nodejs
-          pkgs.gcc
         ];
 
         shellHook = ''
@@ -134,8 +137,6 @@
           echo ""
           echo " Commands:"
           echo "   nvim                    - Start Neovim"
-          echo "   tree-sitter generate    - Regenerate parser from grammar.js"
-          echo "   tree-sitter test        - Run grammar tests"
           echo ""
           echo " Keymaps (inside Neovim):"
           echo "   <Space>rr  - Reload openspec.nvim (clears Lua cache)"
@@ -150,17 +151,6 @@
           export XDG_CACHE_HOME="$(pwd)/.dev/cache"
 
           mkdir -p "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_STATE_HOME" "$XDG_CACHE_HOME"
-
-          # Compile the custom openspec_spec tree-sitter parser
-          PARSER_DIR="$(pwd)/parser"
-          PARSER_SO="$PARSER_DIR/openspec_spec.so"
-          PARSER_SRC="$(pwd)/tree-sitter-openspec-spec/src/parser.c"
-          if [ ! -f "$PARSER_SO" ] || [ "$PARSER_SRC" -nt "$PARSER_SO" ]; then
-            mkdir -p "$PARSER_DIR"
-            echo " Compiling openspec_spec parser..."
-            gcc -o "$PARSER_SO" -shared -fPIC -I "$(pwd)/tree-sitter-openspec-spec/src" "$PARSER_SRC" -Os
-            echo " Parser compiled: $PARSER_SO"
-          fi
         '';
       };
 
