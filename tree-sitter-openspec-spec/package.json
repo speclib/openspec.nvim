@@ -1,0 +1,22 @@
+{
+  "name": "tree-sitter-openspec-spec",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for OpenSpec spec files",
+  "main": "bindings/node",
+  "keywords": ["tree-sitter", "openspec"],
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.18.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.25.0"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.openspec-spec",
+      "file-types": ["openspec-spec"],
+      "highlights": "../queries/openspec_spec/highlights.scm",
+      "injections": "../queries/openspec_spec/injections.scm"
+    }
+  ]
+}

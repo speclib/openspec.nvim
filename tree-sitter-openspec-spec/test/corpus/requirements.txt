@@ -1,0 +1,110 @@
+================
+Simple requirement
+================
+
+### Requirement: wifi-icon
+
+The bar SHALL display an icon.
+
+---
+
+(document
+  (requirement
+    (requirement_name)
+    (requirement_body
+      (word)
+      (word)
+      (keyword)
+      (word)
+      (word)
+      (word))))
+
+================
+Requirement with scenario
+================
+
+### Requirement: wifi-icon
+
+The bar SHALL display an icon.
+
+#### Scenario: wifi connected
+WHEN wifi is connected
+THEN the bar SHALL display
+
+---
+
+(document
+  (requirement
+    (requirement_name)
+    (requirement_body
+      (word)
+      (word)
+      (keyword)
+      (word)
+      (word)
+      (word))
+    (scenario
+      (scenario_name)
+      (condition
+        (condition_keyword))
+      (assertion
+        (assertion_keyword)))))
+
+================
+SHALL NOT keyword
+================
+
+### Requirement: test
+
+The icon SHALL NOT be displayed.
+
+---
+
+(document
+  (requirement
+    (requirement_name)
+    (requirement_body
+      (word)
+      (word)
+      (keyword)
+      (word)
+      (word))))
+
+================
+MUST keyword
+================
+
+### Requirement: test
+
+The system MUST respond quickly.
+
+---
+
+(document
+  (requirement
+    (requirement_name)
+    (requirement_body
+      (word)
+      (word)
+      (keyword)
+      (word)
+      (word))))
+
+================
+MUST NOT keyword
+================
+
+### Requirement: test
+
+The system MUST NOT crash.
+
+---
+
+(document
+  (requirement
+    (requirement_name)
+    (requirement_body
+      (word)
+      (word)
+      (keyword)
+      (word))))

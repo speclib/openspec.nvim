@@ -1,0 +1,5 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Lua, Tree-sitter (C), Neovim plugin
+  Standalone neovim plugin for OpenSpec file support
